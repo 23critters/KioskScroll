@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Kiosk Scroll</title>
+<link rel="stylesheet" href="kioskscroll-min.css" type="text/css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/mootools/1.2/mootools-yui-compressed.js"></script>
+<script type="text/javascript" src="kioskscroll-min.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+window.addEvent("domready", function() {
+	var KS = new KioskScroll({
+		element: document.id(document.body).getElement("div.kioskscroll"),
+		duration: 2,
+		transition: 200,
+		clickframe: true
+	});
+	
+	document.id("slidecontrol").addEvent("click", function(e) {
+		e.preventDefault();
+		KS.stop();
+	});
+});
+//]]>
+</script>
+</head>
+<body>
+
+<div class="kioskscroll">
+	<ul>
+		<li>First frame</li>
+		<li>Second frame</li>
+		<li>Third frame</li>
+		<li>Fourth frame</li>
+		<li>Fifth frame</li>
+	</ul>
+</div>
+
+<p><a href="javascript:;" id="slidecontrol">Stop slide</a></p>
+</body>
+</html>
