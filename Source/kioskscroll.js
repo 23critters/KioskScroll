@@ -9,7 +9,7 @@ authors:
 - kunambi
 
 requires:
-- core/1.2.5: [Class, Element.Event, Element.Style, Fx.Tween]
+- core/1.3: [Class, Element.Event, Element.Style, Fx.Tween]
 */
 
 var KioskScroll = new Class({
