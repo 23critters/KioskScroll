@@ -121,10 +121,19 @@ var KioskScroll = new Class({
         }
     },
     /**
+    @public
+    Overload this function in order to execute something when animation has been completed}
+     */
+    fadeComplete: function() {},
+    /**
     @private
     */
     _fadeOut: function(doFadeIn) {
         var obj = this.element.getElements("ul:first-child > li")[this.curr];
+        if (doFadeIn) {
+            this._fadeIn(this.next);
+            this.fadeComplete();
+        }
         new Fx.Tween(obj, {
             duration: this.options.transition,
             transition: Fx.Transitions.Sine.easeInOut,
@@ -132,9 +141,6 @@ var KioskScroll = new Class({
                 obj.setStyle("display", "none");
                 if (this.options.showanchors) {
                     this.navigator.getElements("li.active").removeClass("active");
-                }
-                if (doFadeIn) {
-                    this._fadeIn(this.next);
                 }
             }.bind(this)
         }).start("opacity", 0);
