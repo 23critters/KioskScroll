@@ -23,12 +23,12 @@ Javascript snippet to stop the animation:
 
 HTML snippet:
 
-&gt;div class="kioskscroll"&lt;
-	&gt;ul&lt;
-		&gt;li&lt;First frame&gt;/li&lt;
-		&gt;li&lt;Second frame&gt;/li&lt;
-	&gt;/ul&lt;
-&gt;/div&lt;
+	&lt;div class="kioskscroll"&gt;
+		&lt;ul&gt;
+			&lt;li&gt;First frame&lt;/li&gt;
+			&lt;li&gt;Second frame&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/div&gt;
 
 CSS selector to style the active navigation anchor:
 
