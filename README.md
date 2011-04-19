@@ -9,11 +9,11 @@ How to use
 
 Javascript snippet to initialize the class:
 
-window.addEvent("domready", function() {
-	var KS = new KioskScroll({
-		element: document.getElement("div.kioskscroll")
+	window.addEvent("domready", function() {
+		var KS = new KioskScroll({
+			element: document.getElement("div.kioskscroll")
+		});
 	});
-});
 
 
 Javascript snippet to stop the animation:
@@ -23,20 +23,23 @@ Javascript snippet to stop the animation:
 
 HTML snippet:
 
-<div class="kioskscroll">
-	<ul>
-		<li>First frame</li>
-		<li>Second frame</li>
-	</ul>
-</div>
+&gt;div class="kioskscroll"&lt;
+	&gt;ul&lt;
+		&gt;li&lt;First frame&gt;/li&lt;
+		&gt;li&lt;Second frame&gt;/li&lt;
+	&gt;/ul&lt;
+&gt;/div&lt;
 
+CSS selector to style the active navigation anchor:
+
+	DIV.kioskscroll UL.kiosk-nav LI.active A {background-color: #ccc;}
 
 Options
 -----------------
 
     element: (string||object) reference to div dom element container. if passing a string, supply it's id
-    width: (integer) width of the container | default: null
-    height: (integer) height of the container | default: null
+    width: (integer) width of the container | default: 200
+    height: (integer) height of the container | default: 200
     duration: (integer) amount of seconds each frame is visible | default 5 seconds,
     transition: (integer) amount of miliseconds of the opacity transition | default: 200 miliseconds
         NB! It is highly recommended that the duration is at least twice as long than the transition
@@ -55,6 +58,7 @@ The following methods are availible publicly:
     start: executes scrollToPane
     stop: halts the animation callback and clears the timer
     scrollToPane: show a specific frame | default: shows the next frame
+	fadeComplete: Overload this function in order to execute something when animation has been completed
 
 Private functions:
 
@@ -65,6 +69,12 @@ Private functions:
 
 Notes
 -----------------
+
+Version 1.0 RC2
+
+	* added method fadeComplete
+	* tightened up some loose ends
+	* width and height is defaulted to 200 pixels
 
 Version 1.0 RC1
 
@@ -94,7 +104,6 @@ Version 0.5
 
 Version 0.4
 
-    * index.html has been translated into English
     * Added option showframes (boolean) wether the numerated anchors are visible or not | default: true
     * Added option useanchors (boolean) wether the numerated anchors are clickable | default: true
           o NB! this value will only take effect if "showframes" is set to "true" 
@@ -107,8 +116,6 @@ Version 0.3
 
 Version 0.2
 
-    * Removed the local copy of mootools-1.2.3-core.js
-    * index.html now loads MooTools? 1.2.3 from googleapis.com
     * Added option autostart (boolean) wether the transition effect should autostart or not | default: true
     * Now you're able to jump to any frame by clicking the corresponding anchor
     * Added some HTML-attributes 

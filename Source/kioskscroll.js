@@ -15,8 +15,8 @@ requires:
 var KioskScroll = new Class({
     Implements: Options,
     options: {
-        width: null,
-        height: null,
+        width: 200,
+        height: 200,
         duration: 5,
         transition: 200,
         clickframe: false,
@@ -39,20 +39,18 @@ var KioskScroll = new Class({
                 throw("DOM object not found");
             }
         } catch(e) {
-            alert(e);
+			if (console) {
+				console.log(e);
+			}
             return;
         }
         
         this.timer = null;
         this.curr = 0;
 
-        if (!isNaN(this.options.width)) {
-            this.element.setStyle("width", this.options.width);
-        }
-        if (!isNaN(this.options.height)) {
-            this.element.setStyle("height", this.options.height);
-        }
-
+		this.element.setStyle("width", parseInt(this.options.width,10)||200);
+        this.element.setStyle("height", parseInt(this.options.height,10)||200);
+        
         if (this.options.showanchors) {
             this.navigator = new Element("ul.kiosk-nav").inject(this.element);
             this.element.getElements("ul:first-child > li").each(function(obj, idx) {
@@ -122,7 +120,7 @@ var KioskScroll = new Class({
     },
     /**
     @public
-    Overload this function in order to execute something when animation has been completed}
+    Overload this function in order to execute something when animation has been completed
      */
     fadeComplete: function() {},
     /**
