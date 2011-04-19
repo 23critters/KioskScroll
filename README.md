@@ -23,12 +23,12 @@ Javascript snippet to stop the animation:
 
 HTML snippet:
 
-	&lt;div class="kioskscroll"&gt;
-		&lt;ul&gt;
-			&lt;li&gt;First frame&lt;/li&gt;
-			&lt;li&gt;Second frame&lt;/li&gt;
-		&lt;/ul&gt;
-	&lt;/div&gt;
+	<div class="kioskscroll">
+		<ul>
+			<li>First frame</li>
+			<li>Second frame</li>
+		</ul>
+	</div>
 
 CSS selector to style the active navigation anchor:
 
@@ -72,9 +72,9 @@ Notes
 
 Version 1.0 RC2
 
-	* added method fadeComplete
+	* added method fadeComplete. Overload this function in order to execute something when animation has been completed
 	* tightened up some loose ends
-	* width and height is defaulted to 200 pixels
+	* width and height is again defaulted to 200 pixels
 
 Version 1.0 RC1
 
