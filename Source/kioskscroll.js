@@ -5,11 +5,13 @@ description: Kiosk Scroll built on the MooTools Framework
 license: MIT-style
 
 authors:
-- Thomas Kunambi
-- kunambi
+- Thomas Kunambi, 23 Critters
 
 requires:
 - core/1.3: [Class, Element.Event, Element.Style, Fx.Tween]
+
+provides: KioskScroll
+...
 */
 
 var KioskScroll = new Class({
@@ -23,7 +25,11 @@ var KioskScroll = new Class({
         showanchors: true,
         useanchors: true,
         autostart: true,
-        periodical: true
+        periodical: true,
+        cssClass: {
+            a: "active",
+            k: "kiosk-nav"
+        }
     },
     /**
     @constructor
@@ -44,15 +50,15 @@ var KioskScroll = new Class({
 			}
             return;
         }
-        
+
         this.timer = null;
         this.curr = 0;
 
 		this.element.setStyle("width", parseInt(this.options.width,10)||200);
         this.element.setStyle("height", parseInt(this.options.height,10)||200);
-        
+
         if (this.options.showanchors) {
-            this.navigator = new Element("ul.kiosk-nav").inject(this.element);
+            this.navigator = new Element("ul." + this.options.cssClass.k).inject(this.element);
             this.element.getElements("ul:first-child > li").each(function(obj, idx) {
                 if (idx > 0) {
                     obj.setStyles({
@@ -70,7 +76,7 @@ var KioskScroll = new Class({
                 }
                 if (this.options.useanchors) {
                     new Element("li", {
-                        "class": !idx ? "active" : ""
+                        "class": !idx ? this.options.cssClass.a : ""
                     }).adopt(
                         new Element("a", {
                             "html": idx + 1,
@@ -84,9 +90,9 @@ var KioskScroll = new Class({
                 } else {
                     new Element("li", {
                         "html": idx + 1,
-                        "class": !idx ? "active" : ""
+                        "class": !idx ? this.options.cssClass.a : ""
                     }).inject(this.navigator);
-                }    
+                }
             }.bind(this));
         }
         if (this.options.autostart) {
@@ -138,7 +144,7 @@ var KioskScroll = new Class({
             onComplete: function() {
                 obj.setStyle("display", "none");
                 if (this.options.showanchors) {
-                    this.navigator.getElements("li.active").removeClass("active");
+                    this.navigator.getElements("li." + this.options.cssClass.a).removeClass(this.options.cssClass.a);
                 }
             }.bind(this)
         }).start("opacity", 0);
@@ -151,7 +157,7 @@ var KioskScroll = new Class({
         var obj = this.element.getElements("ul:first-child > li")[idx];
         obj.setStyle("display", "block");
         if (this.options.showanchors) {
-            this.navigator.getElements("li")[idx].addClass("active");
+            this.navigator.getElements("li")[idx].addClass(this.options.cssClass.a);
         }
         new Fx.Tween(obj, {
             duration: this.options.transition,

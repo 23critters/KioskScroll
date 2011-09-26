@@ -2,6 +2,6 @@ name: Kiosk Scroll
 author: kunambi
 category: Widgets
 tags: [animation, slideshow]
-current: 1.0 RC2
-copyright: "Thomas Kunambi"
-description: Kiosk Scroll built on the MooTools Framework
+current: v1.1
+copyright: "Thomas Kunambi, 23 Critters"
+description: Kiosk Scroll built on the MooTools Framework, allows very easy slide shows with minimal amount of CSS & HTML
