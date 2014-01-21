@@ -38,8 +38,8 @@ Options
 -----------------
 
     element: (string||object) reference to div dom element container. if passing a string, supply it's id
-    width: (integer) width of the container | default: 200
-    height: (integer) height of the container | default: 200
+    width: (integer) width of the container, set to 0 if you wish to set it via CSS | default: 200
+    height: (integer) height of the container, set to 0 if you wish to set it via CSS | default: 200
     duration: (integer) amount of seconds each frame is visible | default 5 seconds,
     transition: (integer) amount of miliseconds of the opacity transition | default: 200 miliseconds
         NB! It is highly recommended that the duration is at least twice as long than the transition
@@ -63,6 +63,11 @@ The following methods are availible publicly:
 
 Notes
 -----------------
+
+Version 1.2
+
+	* Fixed bug: Sometimes the navigation would never have an active class
+	* Changed behaviour of options width and height
 
 Version 1.1
 

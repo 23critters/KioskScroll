@@ -54,8 +54,12 @@ var KioskScroll = new Class({
         this.timer = null;
         this.curr = 0;
 
-		this.element.setStyle("width", parseInt(this.options.width,10)||200);
-        this.element.setStyle("height", parseInt(this.options.height,10)||200);
+        if (this.options.width) {
+    		this.element.setStyle("width", parseInt(this.options.width, 10)||200);
+        }
+        if (this.options.height) {
+            this.element.setStyle("height", parseInt(this.options.height, 10)||200);
+        }
 
         if (this.options.showanchors) {
             this.navigator = new Element("ul." + this.options.cssClass.k).inject(this.element);
@@ -134,18 +138,20 @@ var KioskScroll = new Class({
     */
     _fadeOut: function(doFadeIn) {
         var obj = this.element.getElements("ul:first-child > li")[this.curr];
-        if (doFadeIn) {
-            this._fadeIn(this.next);
-            this.fadeComplete();
-        }
         new Fx.Tween(obj, {
             duration: this.options.transition,
             transition: Fx.Transitions.Sine.easeInOut,
+            onStart: function() {
+                if (this.options.showanchors) {
+                    this.navigator.getElements("li")[this.curr].removeClass(this.options.cssClass.a);
+                }
+                if (doFadeIn) {
+                    this._fadeIn(this.next);
+                    this.fadeComplete();
+                }
+            }.bind(this),
             onComplete: function() {
                 obj.setStyle("display", "none");
-                if (this.options.showanchors) {
-                    this.navigator.getElements("li." + this.options.cssClass.a).removeClass(this.options.cssClass.a);
-                }
             }.bind(this)
         }).start("opacity", 0);
     }.protect(),
